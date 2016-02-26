@@ -172,6 +172,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Data_Access\ApplicationDbContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MyCustomRole.cs" />
+    <Compile Include="Models\MyCustomUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -179,6 +181,10 @@
     <Content Include="App_Data\aspnet_NPoco_Identiy_Provider.mdf" />
     <Content Include="App_Data\aspnet_NPoco_Identiy_Provider_log.ldf">
       <DependentUpon>aspnet_NPoco_Identiy_Provider.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\Custom_NPoco_Identity_Provider.mdf" />
+    <Content Include="App_Data\Custom_NPoco_Identity_Provider_log.ldf">
+      <DependentUpon>Custom_NPoco_Identity_Provider.mdf</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

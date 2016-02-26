@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using NPocoIdentityWebAppTemplate.Data_Access;
+using NPocoIdentityWebAppTemplate.Models;
 using Pacal.NPoco_Idenity_Provider;
 
 namespace NPocoIdentityWebAppTemplate
@@ -29,18 +30,18 @@ namespace NPocoIdentityWebAppTemplate
     }
 
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-    public class ApplicationUserManager : UserManager<IdentityUser>
+    public class ApplicationUserManager : UserManager<MyCustomUser>
     {
-        public ApplicationUserManager(IUserStore<IdentityUser> store)
+        public ApplicationUserManager(IUserStore<MyCustomUser> store)
             : base(store)
         {
         }
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
-            var manager = new ApplicationUserManager(new UserStore<IdentityUser, IdentityRole>(context.Get<ApplicationDbContext>().Database));
+            var manager = new ApplicationUserManager(new UserStore<MyCustomUser, MyCustomRole>(context.Get<ApplicationDbContext>().Database));
             // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<IdentityUser>(manager)
+            manager.UserValidator = new UserValidator<MyCustomUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
@@ -63,11 +64,11 @@ namespace NPocoIdentityWebAppTemplate
 
             // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
             // You can write your own provider and plug it in here.
-            manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<IdentityUser>
+            manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<MyCustomUser>
             {
                 MessageFormat = "Your security code is {0}"
             });
-            manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<IdentityUser>
+            manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<MyCustomUser>
             {
                 Subject = "Security Code",
                 BodyFormat = "Your security code is {0}"
@@ -78,21 +79,21 @@ namespace NPocoIdentityWebAppTemplate
             if (dataProtectionProvider != null)
             {
                 manager.UserTokenProvider = 
-                    new DataProtectorTokenProvider<IdentityUser>(dataProtectionProvider.Create("ASP.NET Identity"));
+                    new DataProtectorTokenProvider<MyCustomUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
         }
     }
 
     // Configure the application sign-in manager which is used in this application.
-    public class ApplicationSignInManager : SignInManager<IdentityUser, string>
+    public class ApplicationSignInManager : SignInManager<MyCustomUser, string>
     {
         public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)
             : base(userManager, authenticationManager)
         {
         }
 
-        public override Task<ClaimsIdentity> CreateUserIdentityAsync(IdentityUser user)
+        public override Task<ClaimsIdentity> CreateUserIdentityAsync(MyCustomUser user)
         {
             return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
         }

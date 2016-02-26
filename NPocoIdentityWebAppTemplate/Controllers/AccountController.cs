@@ -152,7 +152,14 @@ namespace NPocoIdentityWebAppTemplate.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser() { UserName = model.Email, Email = model.Email };
+                var user = new MyCustomUser()
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    Comment = model.Comment,
+                    Age = model.Age,
+                    Title = model.Title,
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -368,7 +375,7 @@ namespace NPocoIdentityWebAppTemplate.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new IdentityUser() { UserName = model.Email, Email = model.Email };
+                var user = new MyCustomUser() { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
