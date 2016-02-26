@@ -61,6 +61,10 @@
       <HintPath>..\packages\NPoco.2.10.11\lib\net45\NPoco.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NPoco_Idenity_Provider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPoco_Identity_Provider.1.0.0\lib\net452\NPoco_Idenity_Provider.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -258,12 +262,6 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\NPoco_Identity_Provider\NPoco_Idenity_Provider\NPoco_Identity_Provider.csproj">
-      <Project>{4f8e2991-6b18-4532-b796-439e9fe80974}</Project>
-      <Name>NPoco_Identity_Provider</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
