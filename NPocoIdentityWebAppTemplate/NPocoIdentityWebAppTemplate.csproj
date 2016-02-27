@@ -61,6 +61,10 @@
       <HintPath>..\packages\NPoco.2.10.11\lib\net45\NPoco.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NPoco_Idenity_Provider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPoco_Identity_Provider.1.0.0\lib\net452\NPoco_Idenity_Provider.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
